@@ -12,3 +12,8 @@ Mediciones del 20 de junio del 2023 desde las 18:07
 
 Mediciones del 20 de junio del 2023 desde las 18:23
 2023-06-20 18:23:45 | Download: 17.72 Mbit/s  | Upload: 5.37 Mbit/s
+
+Mediciones del 20 de junio del 2023 desde las 19:57
+2023-06-20 19:58:21 | Download: 1.63 Mbit/s   | Upload: 3.70 Mbit/s
+2023-06-20 20:03:22 | Download:               | Upload:              
+2023-06-20 20:09:01 | Download: 2.42 Mbit/s   | Upload: 4.19 Mbit/s
