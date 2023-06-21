@@ -22,7 +22,20 @@ if %errorlevel% neq 0 (
     pip install speedtest-cli >nul 2>&1
 
     REM Obtener la ruta de speedtest-cli
-    for /f %%i in ('where speedtest-cli') do set "speedtest_cli_path=%%~dpi"
+    set "speedtest_cli_path="
+    for /d %%i in ("%USERPROFILE%\AppData\Local\Packages\PythonSoftwareFoundation.Python.*") do (
+        for /f %%j in ('dir /b /s "%%~i\LocalCache\local-packages\python*\site-packages\speedtest_cli"') do (
+            set "speedtest_cli_path=%%~dpj"
+        )
+    )
+
+    if "%speedtest_cli_path%"=="" (
+        echo No se pudo encontrar la ruta de speedtest-cli.
+        echo Por favor, verifica la instalación y configuración de speedtest-cli.
+        echo.
+        pause > nul
+        exit
+    )
 
     echo.
     echo Instrucciones de configuracion:
@@ -44,3 +57,4 @@ if %errorlevel% neq 0 (
 
 python medirInternet.py
 pause > nul
+exit
