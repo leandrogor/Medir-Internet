@@ -1,6 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
+
 REM Verificar si Python está instalado
 python --version >nul 2>&1
 if !errorlevel! neq 0 (
@@ -13,7 +14,6 @@ if !errorlevel! neq 0 (
     pause > nul
     exit
 )
-
 
 REM Verificar si speedtest-cli está instalado
 speedtest-cli --version >nul 2>&1
