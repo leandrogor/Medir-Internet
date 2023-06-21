@@ -23,19 +23,25 @@ if %errorlevel% neq 0 (
 
     REM Obtener la ruta de speedtest-cli
     set "speedtest_cli_path="
-    for /d %%i in ("%USERPROFILE%\AppData\Local\Packages\PythonSoftwareFoundation.Python.*") do (
-        for /f %%j in ('dir /b /s "%%~i\LocalCache\local-packages\python*\site-packages\speedtest_cli"') do (
-            set "speedtest_cli_path=%%~dpj"
-        )
-    )
+	for /d %%i in ("%USERPROFILE%\AppData\Local\Packages\Python*") do (
+		set "speedtest_cli_path=%%~i\LocalCache\local-packages\Python*\Scripts" 
+	)
 
-    if "%speedtest_cli_path%"=="" (
-        echo No se pudo encontrar la ruta de speedtest-cli.
-        echo Por favor, verifica la instalación y configuración de speedtest-cli.
-        echo.
-        pause > nul
-        exit
-    )
+	if "%speedtest_cli_path%"=="" (
+		echo No se pudo encontrar la ruta de speedtest-cli.
+		echo Por favor, verifica la instalacion y configuracion de speedtest-cli.
+		echo.
+		pause > nul
+		exit
+	)
+
+	REM Convertir la ruta a una ruta absoluta
+	pushd "%speedtest_cli_path%"
+	set "speedtest_cli_path=%CD%"
+	popd 
+
+	REM Añadir la ruta al PATH
+	setx PATH "%PATH%;%speedtest_cli_path%" >nul 2>&1
 
     echo.
     echo Instrucciones de configuracion:
