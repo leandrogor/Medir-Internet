@@ -61,5 +61,3 @@ if !errorlevel! neq 0 (
 
 
 python medirInternet.py
-pause > nul
-exit
