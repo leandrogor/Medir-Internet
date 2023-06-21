@@ -7,8 +7,9 @@ if %errorlevel% neq 0 (
     REM Abrir la página de detalles de Python 3.11 en la Microsoft Store
     start ms-windows-store://pdp/?ProductId=9NRWMJP3717K
     echo Por favor, instala Python desde Microsoft Store y luego vuelve a ejecutar este archivo.
-    pause
+    pause >nul
     exit
 )
 
 python medirInternet.py
+pause >nul
