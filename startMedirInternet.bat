@@ -22,15 +22,13 @@ if %errorlevel% neq 0 (
     pip install speedtest-cli >nul 2>&1
 
     REM Obtener la ruta de speedtest-cli
-    set "speedtest_cli_path="
 	for /d %%i in ("%USERPROFILE%\AppData\Local\Packages\Python*") do (
-		set "speedtest_cli_path=%%~i\LocalCache\local-packages\Python*\Scripts" 
+		set speedtest_cli_path=%%~i\LocalCache\local-packages\Python*\Scripts 
 	)
 
-	if "%speedtest_cli_path%"=="" (
+	if %speedtest_cli_path%=="" (
 		echo No se pudo encontrar la ruta de speedtest-cli.
 		echo Por favor, verifica la instalacion y configuracion de speedtest-cli.
-		echo.
 		pause > nul
 		exit
 	)
