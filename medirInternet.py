@@ -1,6 +1,6 @@
 import subprocess
 from datetime import datetime
-import time
+from time import sleep
 import locale
 
 
@@ -23,18 +23,17 @@ def guardar_resultados(resultados):
         elif "Upload" in linea:
             velocidad_subida = linea.replace("Upload:", "").strip()
 
-    velocidad_descarga = velocidad_descarga if velocidad_descarga else " " * 13
-    velocidad_subida = velocidad_subida if velocidad_subida else " " * 13
-
     with open('resultados.txt', 'a') as archivo:
-        archivo.write('{:<19} | Download: {:<13} | Upload: {}\n'.format(timestamp, velocidad_descarga, velocidad_subida))
+        archivo.write('{:<19} | Download: {:<13} | Upload: {}\n'
+                      .format(timestamp, velocidad_descarga, velocidad_subida))
 
-    if velocidad_descarga and velocidad_subida:
+    if velocidad_descarga:
         print('{:<19} | Download: {:<13} | Upload: {}'.format(timestamp, velocidad_descarga, velocidad_subida))
     else:
         print('{} | Error: Timed Out'.format(timestamp))
         reintento = medir_velocidad_internet()
         guardar_resultados(reintento)
+        sleep(10)
 
 
 def main():
@@ -54,7 +53,7 @@ def main():
     while True:
         resultados = medir_velocidad_internet()
         guardar_resultados(resultados)
-        time.sleep(300)  # Espera 5 minutos (300 segundos) antes de realizar la siguiente medición
+        sleep(300)  # Espera 5 minutos (300 segundos) antes de realizar la siguiente medición
 
 
 if __name__ == '__main__':
