@@ -34,14 +34,6 @@ if !errorlevel! neq 0 (
 		exit
 	)
 
-	REM Convertir la ruta a una ruta absoluta
-	pushd "!speedtest_cli_path!"
-	set "speedtest_cli_path=!CD!"
-	popd 
-
-	REM Añadir la ruta al PATH
-	setx PATH "%PATH%;!speedtest_cli_path!" >nul 2>&1
-
     echo.
     echo Instrucciones de configuracion:
     echo 1. Abre el menu de inicio y busca "Variables de entorno".
